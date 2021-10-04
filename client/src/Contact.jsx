@@ -28,7 +28,7 @@ const Contact = ( ) => {
     alert(
       "Form Submitted Successfully."
     );
-    axios.post("http://localhost:8080/PostForm", data)
+    axios.post("https://contact-mern.herokuapp.com/PostForm", data)
     .then(res => {
       window.location = ('/')
     })
