@@ -3,7 +3,12 @@ const bodyparser = require("body-parser");
 const mongoose = require("mongoose");
 const mainroute = require("./Routes/data");
 const path = require("path");
+const dotenv = require("dotenv");
 const app = express();
+
+dotenv.config({ path: "./.env" });
+
+const PORT = process.env.PORT || 8080;
 
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
@@ -33,18 +38,15 @@ app.get("/*", (req, res) => {
 });
 
 mongoose
-  .connect(
-    "mongodb+srv://Khan:Khan-94871080@reactcluster.el2n9.mongodb.net/Contact?retryWrites=true&w=majority",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: true,
-    }
-  )
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: true,
+  })
   .then(() => {
     console.log("MongoDB Database Connected to Server");
-    app.listen(8080, () => {
-      console.log(` is running on PORT : 8080 .`);
+    app.listen(process.env.PORT, () => {
+      console.log(` is running on PORT : ${process.env.PORT} .`);
     });
   })
   .catch((error) => {
