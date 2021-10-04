@@ -6,7 +6,7 @@ const path = require("path");
 const dotenv = require("dotenv");
 const app = express();
 
-dotenv.config({ path: "./.env" });
+dotenv.config({ path: "backend/.env" });
 
 const PORT = process.env.PORT || 8080;
 
@@ -45,8 +45,8 @@ mongoose
   })
   .then(() => {
     console.log("MongoDB Database Connected to Server");
-    app.listen(process.env.PORT, () => {
-      console.log(` is running on PORT : ${process.env.PORT} .`);
+    app.listen(PORT, () => {
+      console.log(` is running on PORT : ${PORT} .`);
     });
   })
   .catch((error) => {
