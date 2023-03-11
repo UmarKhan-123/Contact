@@ -8,7 +8,7 @@ const app = express();
 
 dotenv.config({ path: "backend/.env" });
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8090;
 
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
